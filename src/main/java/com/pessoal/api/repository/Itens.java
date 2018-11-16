@@ -2,6 +2,8 @@ package com.pessoal.api.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface Itens extends JpaRepository<Itens, Long> {
+import com.pessoal.api.model.Item;
+
+public interface Itens extends JpaRepository<Item, Long> {
 
 }
