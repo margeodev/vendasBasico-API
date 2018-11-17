@@ -10,10 +10,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Venda {
@@ -27,6 +30,7 @@ public class Venda {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_venda")
 	public Long getId() {
 		return id;
 	}
@@ -60,6 +64,7 @@ public class Venda {
 	}
 	
 	@NotEmpty
+	@JsonIgnoreProperties("venda")
 	@OneToMany(mappedBy = "venda", cascade = CascadeType.ALL, orphanRemoval = true)
 	public List<Item> getItens() {
 		return itens;
@@ -69,6 +74,7 @@ public class Venda {
 	}
 	
 	@ManyToOne
+	@JoinColumn(name = "cliente_id")
 	public Cliente getCliente() {
 		return cliente;
 	}

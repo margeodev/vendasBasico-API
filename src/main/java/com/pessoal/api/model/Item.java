@@ -1,9 +1,11 @@
 package com.pessoal.api.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -21,6 +23,7 @@ public class Item {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_item_vendido")
 	public Long getId() {
 		return id;
 	}
@@ -38,6 +41,7 @@ public class Item {
 	
 	@NotNull
 	@ManyToOne
+	@JoinColumn(name = "produto_id")
 	public Produto getProduto() {
 		return produto;
 	}
@@ -47,6 +51,7 @@ public class Item {
 	
 	@NotNull
 	@ManyToOne
+	@JoinColumn(name = "venda_id")
 	@JsonIgnoreProperties("itens")
 	public Venda getVenda() {
 		return venda;
